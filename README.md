@@ -17,7 +17,7 @@ git remote remove origin
 ```
 
 - Create a new repository in your GitHub account `https://github.com/TheFernande?tab=repositories`
-- Add the new repository as the `origin` remote
+- Add the new repository as the `origin` remote `https://github.com/TheFernande/<your_repository_name>`
 
 ```bash
 git remote add origin <your_repository_url>
