@@ -7,6 +7,7 @@
 - Duplicate this `starter` directory and rename it to your `<project_name>`
 - Update the `name` field in the `package.json` file to your `<project_name>`
 - Update the `description` field in the `package.json` file to your `<project_description>`
+- Update `Title` and `Description` metadata in `app/layout.tsx`
 
 ### Git setup
 
