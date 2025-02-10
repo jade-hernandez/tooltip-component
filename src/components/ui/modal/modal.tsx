@@ -9,8 +9,7 @@ import { Portal } from "../portal";
 import { ModalCloseButton } from "./modal-close-button";
 import { IModalProps } from "./modal.types";
 
-export const modalVariants = cva(
-  "relative w-full transform rounded-lg bg-white shadow-xl transition-all",
+export const modalVariants = cva("relative w-full transform rounded-lg bg-white shadow-xl transition-all",
   {
     variants: {
       size: {
@@ -23,7 +22,7 @@ export const modalVariants = cva(
       },
       position: {
         center: "p-6",
-        bottom: "p-6 rounded-b-none"
+        bottom: "p-6 rounded-b-none fixed bottom-0 left-[50%] transform -translate-x-1/2"
       }
     },
     defaultVariants: {
@@ -51,10 +50,7 @@ export function Modal({
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Initialize focus trap
-  useFocusTrap(modalRef, {
-    enabled: isOpen,
-    restoreFocus: true
-  });
+  useFocusTrap(modalRef, isOpen);
 
   // Handle escape key and scroll lock
   useEffect(() => {
