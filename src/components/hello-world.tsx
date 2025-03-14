@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { Button } from "@/ui/button";
+
 import { ToggleSwitch } from "@/ui/toggle-button";
+import { useRef, useState } from "react";
 
 
 export default function HelloWorld() {
@@ -25,6 +26,8 @@ export default function HelloWorld() {
         onClick={() => setIsModalOpen(true)}
         textContent="Open Modal"
       />
+
+
 
       {/* Modal */}
       {isModalOpen && (
