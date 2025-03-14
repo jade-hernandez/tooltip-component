@@ -5,6 +5,7 @@ import { Button } from "@/ui/button";
 
 import { ToggleSwitch } from "@/ui/toggle-button";
 import { useRef, useState } from "react";
+import { PriceCardExample } from "./price-card-exemple";
 
 
 export default function HelloWorld() {
@@ -26,8 +27,9 @@ export default function HelloWorld() {
         onClick={() => setIsModalOpen(true)}
         textContent="Open Modal"
       />
-
-
+      <div className="p-4">
+        <PriceCardExample />
+      </div>
 
       {/* Modal */}
       {isModalOpen && (
