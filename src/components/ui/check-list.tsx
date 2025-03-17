@@ -13,11 +13,11 @@ export const CheckListItem: React.FC<CheckListItemProps> = ({
   className,
 }) => {
   return (
-    <li className={cn("flex items-start gap-3", className)}>
-      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+    <li className={cn("flex gap-3", className)}>
+      <div className="flex-shrink-0 flex items-center justify-center">
         <IconCheckFill />
       </div>
-      <span className="text-neutral-700">{content}</span>
+      <span className="text-neutral-600 ">{content}</span>
     </li>
   );
 };
@@ -32,7 +32,7 @@ export const CheckList: React.FC<CheckListProps> = ({
   className,
 }) => {
   return (
-    <ul className={cn("space-y-4", className)}>
+    <ul className={cn("space-y-5", className)}>
       {items.map((item, index) => (
         <CheckListItem
           key={index}

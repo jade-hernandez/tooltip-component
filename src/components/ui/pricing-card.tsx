@@ -1,30 +1,53 @@
 import { cn } from "@/lib/utils";
+import { VariantProps, cva } from "class-variance-authority";
 
+const pricingCardVariants = cva(
+  "flex flex-col",
+  {
+    variants: {
+      variant: {
+        default: "",
+        highlighted: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
-export interface PriceCardProps {
+export interface PricingCardProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+  VariantProps<typeof pricingCardVariants> {
   price: number;
   currency: "$" | "€";
   duration: "month" | "year";
   subText?: string;
-  isHighlighted?: boolean;
-  className?: string;
 }
 
-const PricingCard: React.FC<PriceCardProps> = ({
+const PricingCard: React.FC<PricingCardProps> = ({
   price,
   currency,
   duration,
   subText,
-  isHighlighted = false,
+  variant,
   className,
+  ...props
 }) => {
+
+  const priceTextColor = variant === "highlighted" ? "text-indigo-700" : "text-neutral-900";
+  const durationTextColor = variant === "highlighted" ? "text-indigo-700" : "text-neutral-900";
+
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div
+      className={cn(pricingCardVariants({ variant }), className)}
+      {...props}
+    >
       <div className="flex items-baseline">
-        <span className={cn("text-5xl font-semibold text-neutral-900", isHighlighted && "text-indigo-700")}>
+        <span className={cn("text-5xl font-semibold", priceTextColor)}>
           {currency}{price.toFixed(2)}
         </span>
-        <span className={cn("text-base text-neutral-900", isHighlighted && "text-indigo-700")}>
+        <span className={cn("text-base", durationTextColor)}>
           / {duration}
         </span>
       </div>
@@ -35,8 +58,8 @@ const PricingCard: React.FC<PriceCardProps> = ({
           </span>
         )
       }
-    </div >
+    </div>
   );
 };
 
-export { PricingCard };
+export { PricingCard, pricingCardVariants };

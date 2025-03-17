@@ -14,7 +14,7 @@ export const PriceCardExample: React.FC = () => {
         currency="$"
         duration="month"
         subText="Billed monthly"
-        isHighlighted={true}
+        variant="highlighted"
       />
 
       <div className="mt-6">
