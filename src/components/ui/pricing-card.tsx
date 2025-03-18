@@ -1,13 +1,30 @@
 import { cn } from "@/lib/utils";
-import { VariantProps, cva } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
-const pricingCardVariants = cva(
-  "flex flex-col",
+
+const priceTextVariants = cva(
+  "text-5xl font-semibold",
   {
     variants: {
       variant: {
-        default: "",
-        highlighted: "",
+        default: "text-neutral-900",
+        highlighted: "text-indigo-700",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+
+const durationTextVariants = cva(
+  "text-base",
+  {
+    variants: {
+      variant: {
+        default: "text-neutral-900",
+        highlighted: "text-indigo-700",
       },
     },
     defaultVariants: {
@@ -17,12 +34,12 @@ const pricingCardVariants = cva(
 );
 
 export interface PricingCardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-  VariantProps<typeof pricingCardVariants> {
+  extends React.HTMLAttributes<HTMLDivElement> {
   price: number;
   currency: "$" | "€";
   duration: "month" | "year";
   subText?: string;
+  variant?: "default" | "highlighted";
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -30,36 +47,30 @@ const PricingCard: React.FC<PricingCardProps> = ({
   currency,
   duration,
   subText,
-  variant,
+  variant = "default",
   className,
   ...props
 }) => {
-
-  const priceTextColor = variant === "highlighted" ? "text-indigo-700" : "text-neutral-900";
-  const durationTextColor = variant === "highlighted" ? "text-indigo-700" : "text-neutral-900";
-
   return (
     <div
-      className={cn(pricingCardVariants({ variant }), className)}
+      className={cn("flex flex-col", className)}
       {...props}
     >
       <div className="flex items-baseline">
-        <span className={cn("text-5xl font-semibold", priceTextColor)}>
+        <span className={priceTextVariants({ variant })}>
           {currency}{price.toFixed(2)}
         </span>
-        <span className={cn("text-base", durationTextColor)}>
+        <span className={cn(durationTextVariants({ variant }), "ml-1")}>
           / {duration}
         </span>
       </div>
-      {
-        subText && (
-          <span className="text-base text-neutral-600">
-            {subText}
-          </span>
-        )
-      }
+      {subText && (
+        <span className="text-base text-neutral-600 mt-1">
+          {subText}
+        </span>
+      )}
     </div>
   );
 };
 
-export { PricingCard, pricingCardVariants };
+export { PricingCard };
