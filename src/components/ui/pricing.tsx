@@ -17,7 +17,6 @@ const priceTextVariants = cva(
   }
 );
 
-
 const durationTextVariants = cva(
   "text-base",
   {
@@ -33,7 +32,7 @@ const durationTextVariants = cva(
   }
 );
 
-export interface PricingCardProps
+export interface PricingProps
   extends React.HTMLAttributes<HTMLDivElement> {
   price: number;
   currency: "$" | "€";
@@ -42,7 +41,7 @@ export interface PricingCardProps
   variant?: "default" | "highlighted";
 }
 
-const PricingCard: React.FC<PricingCardProps> = ({
+const Pricing: React.FC<PricingProps> = ({
   price,
   currency,
   duration,
@@ -73,4 +72,4 @@ const PricingCard: React.FC<PricingCardProps> = ({
   );
 };
 
-export { PricingCard };
+export { Pricing };

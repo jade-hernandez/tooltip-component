@@ -22,14 +22,16 @@ export default function HelloWorld() {
 
   return (
     <div className="p-4">
+
+      <div className="p-4">
+        <PriceCardExample />
+      </div>
       {/* Trigger button */}
       <Button
         onClick={() => setIsModalOpen(true)}
         textContent="Open Modal"
       />
-      <div className="p-4">
-        <PriceCardExample />
-      </div>
+
 
       {/* Modal */}
       {isModalOpen && (
