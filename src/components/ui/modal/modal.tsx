@@ -1,15 +1,16 @@
-import { useEffect, useRef } from "react";
 import { cva } from "class-variance-authority";
+import { useEffect, useRef } from "react";
 
-import { cn } from "@/lib/utils";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
+import { cn } from "@/lib/utils";
 
 import { Portal } from "../portal";
 
 import { ModalCloseButton } from "./modal-close-button";
 import { IModalProps } from "./modal.types";
 
-export const modalVariants = cva("relative w-full transform rounded-lg bg-white shadow-xl transition-all",
+export const modalVariants = cva(
+  "relative w-full transform rounded-lg bg-white shadow-xl transition-all",
   {
     variants: {
       size: {
@@ -81,9 +82,9 @@ export function Modal({
   return (
     <Portal>
       <div
-        className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
-        role="dialog"
-        aria-modal="true"
+        className='fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center'
+        role='dialog'
+        aria-modal='true'
         aria-labelledby={title ? "modal-title" : undefined}
         aria-describedby={description ? "modal-description" : undefined}
       >
@@ -93,7 +94,7 @@ export function Modal({
             "fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity",
             overlayClassName
           )}
-          aria-hidden="true"
+          aria-hidden='true'
           onClick={closeOnOverlayClick ? onClose : undefined}
         />
 
@@ -106,8 +107,8 @@ export function Modal({
 
           {title && (
             <h2
-              id="modal-title"
-              className="text-lg font-semibold text-gray-900"
+              id='modal-title'
+              className='text-lg font-semibold text-gray-900'
             >
               {title}
             </h2>
@@ -115,16 +116,14 @@ export function Modal({
 
           {description && (
             <p
-              id="modal-description"
-              className="mt-2 text-sm text-gray-500"
+              id='modal-description'
+              className='mt-2 text-sm text-gray-500'
             >
               {description}
             </p>
           )}
 
-          <div className={cn("mt-4", !title && !description && "mt-0")}>
-            {children}
-          </div>
+          <div className={cn("mt-4", !title && !description && "mt-0")}>{children}</div>
         </div>
       </div>
     </Portal>

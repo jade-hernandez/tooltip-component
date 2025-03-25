@@ -2,42 +2,36 @@ import { cn } from "@/lib/utils";
 
 import IconCheckFill from "../icons/icon-check-fill";
 
-
-export interface CheckListItemProps {
+export interface ICheckListItemProps {
   content: string;
   className?: string;
 }
 
-export const CheckListItem: React.FC<CheckListItemProps> = ({
-  content,
-  className,
-}) => {
+export const CheckListItem = ({ content, className }: ICheckListItemProps) => {
   return (
     <li className={cn("flex gap-3", className)}>
-      <div className="flex-shrink-0 flex items-center justify-center">
+      <div className='flex flex-shrink-0 items-center justify-center'>
         <IconCheckFill />
       </div>
-      <span className="text-neutral-600 ">{content}</span>
+      <span className='text-neutral-600'>{content}</span>
     </li>
   );
 };
 
-export interface CheckListProps {
-  items: CheckListItemProps[];
+export interface ICheckListProps {
+  items: ICheckListItemProps[];
   className?: string;
 }
 
-export const CheckList: React.FC<CheckListProps> = ({
-  items,
-  className,
-}) => {
+export const CheckList = ({ items, className }: ICheckListProps) => {
+  const isLastItem = items.length - 1;
   return (
     <ul className={cn("space-y-5", className)}>
       {items.map((item, index) => (
         <CheckListItem
           key={index}
           content={item.content}
-          className={item.className}
+          className={cn(item.className, index === isLastItem ? "pb-5" : "")}
         />
       ))}
     </ul>

@@ -1,73 +1,65 @@
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
-
-const priceTextVariants = cva(
-  "text-5xl font-semibold",
-  {
-    variants: {
-      variant: {
-        default: "text-neutral-900",
-        highlighted: "text-indigo-700",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
+const pricingVariants = cva("", {
+  variants: {
+    variant: {
+      default: "text-neutral-900",
+      highlighted: "text-indigo-700"
+    }
+  },
+  defaultVariants: {
+    variant: "default"
   }
-);
+});
 
-const durationTextVariants = cva(
-  "text-base",
-  {
-    variants: {
-      variant: {
-        default: "text-neutral-900",
-        highlighted: "text-indigo-700",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+type TCurrency = "$" | "€";
+type TBillingCycle = "month" | "year";
+type TVariant = "default" | "highlighted";
 
-export interface PricingProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  price: number;
-  currency: "$" | "€";
-  duration: "month" | "year";
+export interface IPricingProps extends React.HTMLAttributes<HTMLDivElement> {
+  price: string;
+  currency?: TCurrency;
+  billingCycle?: TBillingCycle;
   subText?: string;
-  variant?: "default" | "highlighted";
+  variant?: TVariant;
 }
 
-const Pricing: React.FC<PricingProps> = ({
+const Pricing = ({
   price,
-  currency,
-  duration,
+  currency = "$",
+  billingCycle = "month",
   subText,
   variant = "default",
   className,
   ...props
-}) => {
+}: IPricingProps) => {
+  const priceAsNumber = Number(price);
+
+  const currencyMap = {
+    $: "en-US",
+    "€": "fr-FR"
+  };
+
+  const formattedPrice = new Intl.NumberFormat(currencyMap[currency], {
+    style: "currency",
+    currency: currency === "$" ? "USD" : "EUR"
+  }).format(priceAsNumber);
+
   return (
     <div
       className={cn("flex flex-col", className)}
       {...props}
     >
-      <div className="flex items-baseline">
-        <span className={priceTextVariants({ variant })}>
-          {currency}{price.toFixed(2)}
+      <div className='flex items-baseline'>
+        <span className={cn("text-5xl font-semibold", pricingVariants({ variant }))}>
+          {formattedPrice}
         </span>
-        <span className={cn(durationTextVariants({ variant }), "ml-1")}>
-          / {duration}
+        <span className={cn("text-base", pricingVariants({ variant }), "ml-1")}>
+          / {billingCycle}
         </span>
       </div>
-      {subText && (
-        <span className="text-base text-neutral-600 mt-1">
-          {subText}
-        </span>
-      )}
+      {subText && <span className='mt-1 text-base text-neutral-600'>{subText}</span>}
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes, cloneElement, forwardRef } from "react";
-import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { VariantProps, cva } from "class-variance-authority";
+import { ButtonHTMLAttributes, cloneElement, forwardRef } from "react";
 
 /**
  * Configuration for button styling variants using Class Variance Authority (CVA).
  * Defines the base styles and variants for the button component.
- * 
+ *
  * @see https://cva.style/docs for more information about CVA
  */
 const buttonVariants = cva(
@@ -91,8 +91,8 @@ const buttonVariants = cva(
     // Default variant settings if none are specified
     defaultVariants: {
       variant: "primary",
-      size: "md",
-    },
+      size: "md"
+    }
   }
 );
 
@@ -102,7 +102,7 @@ const buttonVariants = cva(
  */
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   /** The text content to display inside the button */
   textContent?: string;
   /** An optional icon component to render (must be a valid React element) */
@@ -118,7 +118,7 @@ export interface ButtonProps
 /**
  * A versatile button component that supports multiple variants, icons, and sizes.
  * Uses the forwardRef pattern to allow parent components to access the underlying button element.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -150,19 +150,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     // If both icon and iconSize are provided, clone the icon with the new size
     // This pattern allows us to modify the icon properties without mutating the original
-    const renderedIcon = icon && iconSize
-      ? cloneElement(icon, { size: iconSize })
-      : icon;
+    const renderedIcon = icon && iconSize ? cloneElement(icon, { size: iconSize }) : icon;
 
     return (
       <button
         // Forward the ref to access the DOM node
         ref={ref}
         // Combine variant classes with any additional className provided
-        className={cn(
-          buttonVariants({ variant, size }),
-          className
-        )}
+        className={cn(buttonVariants({ variant, size }), className)}
         // Use isDisabled prop for disabled state
         disabled={isDisabled}
         // Spread remaining props to button element

@@ -1,16 +1,15 @@
-import { forwardRef } from "react";
-import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-
+import { VariantProps, cva } from "class-variance-authority";
+import { forwardRef } from "react";
 
 const toggleVariants = cva(
   "relative inline-flex items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2",
   {
     variants: {
       size: {
-        sm: "h-5 w-9",        // 20px height, 36px width
-        md: "h-6 w-11",       // 24px height, 44px width
-        lg: "h-8 w-14"        // 32px height, 56px width
+        sm: "h-5 w-9", // 20px height, 36px width
+        md: "h-6 w-11", // 24px height, 44px width
+        lg: "h-8 w-14" // 32px height, 56px width
       }
     },
     defaultVariants: {
@@ -24,18 +23,9 @@ const thumbVariants = cva(
   {
     variants: {
       size: {
-        sm: [
-          "h-3.5 w-3.5",
-          "translate-x-0.5 data-[checked=true]:translate-x-5"
-        ],
-        md: [
-          "h-5 w-5",
-          "translate-x-0.5 data-[checked=true]:translate-x-5"
-        ],
-        lg: [
-          "h-7 w-7",
-          "translate-x-0.5 data-[checked=true]:translate-x-6"
-        ]
+        sm: ["h-3.5 w-3.5", "translate-x-0.5 data-[checked=true]:translate-x-5"],
+        md: ["h-5 w-5", "translate-x-0.5 data-[checked=true]:translate-x-5"],
+        lg: ["h-7 w-7", "translate-x-0.5 data-[checked=true]:translate-x-6"]
       }
     },
     defaultVariants: {
@@ -46,29 +36,22 @@ const thumbVariants = cva(
 
 export interface ToggleSwitchProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof toggleVariants> {
+    VariantProps<typeof toggleVariants> {
   checked?: boolean;
   onCheckedChange?: (value: boolean) => void;
   disabled?: boolean;
 }
 
 const ToggleSwitch = forwardRef<HTMLButtonElement, ToggleSwitchProps>((props, ref) => {
-  const {
-    checked = false,
-    onCheckedChange,
-    disabled = false,
-    size,
-    className,
-    ...rest
-  } = props;
+  const { checked = false, onCheckedChange, disabled = false, size, className, ...rest } = props;
   // ({ checked = false, onCheckedChange, disabled = false, size, className, ...props }, ref) => {
-  console.log('Component Props:', { checked, disabled, size });
+  console.log("Component Props:", { checked, disabled, size });
 
   const handleToggle = () => {
-    console.log('Toggle clicked. Current state:', {
+    console.log("Toggle clicked. Current state:", {
       checked,
       disabled,
-      'Will toggle to': !checked
+      "Will toggle to": !checked
     });
 
     if (!disabled) {
@@ -80,7 +63,7 @@ const ToggleSwitch = forwardRef<HTMLButtonElement, ToggleSwitchProps>((props, re
     <button
       ref={ref}
       // type="button"
-      role="switch"
+      role='switch'
       aria-checked={checked}
       disabled={disabled}
       onClick={handleToggle}
@@ -98,8 +81,7 @@ const ToggleSwitch = forwardRef<HTMLButtonElement, ToggleSwitchProps>((props, re
       />
     </button>
   );
-}
-);
+});
 
 ToggleSwitch.displayName = "ToggleSwitch";
 

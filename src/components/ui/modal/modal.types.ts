@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { type VariantProps } from "class-variance-authority";
+import { ReactNode } from "react";
 
 import { modalVariants } from "./modal";
 
