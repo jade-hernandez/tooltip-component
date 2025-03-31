@@ -13,28 +13,28 @@ const pricingVariants = cva("", {
   }
 });
 
-type TCurrency = "$" | "€";
-type TBillingCycle = "month" | "year";
-type TVariant = "default" | "highlighted";
+export type TCurrency = "$" | "€";
+export type TBillingCycle = "monthly" | "annually";
+export type TVariant = "default" | "highlighted";
 
 export interface IPricingProps extends React.HTMLAttributes<HTMLDivElement> {
-  price: string;
+  pricing: string[];
   currency?: TCurrency;
   billingCycle?: TBillingCycle;
-  subText?: string;
   variant?: TVariant;
 }
 
 const Pricing = ({
-  price,
+  pricing,
   currency = "$",
-  billingCycle = "month",
-  subText,
+  billingCycle = "monthly",
   variant = "default",
   className,
   ...props
 }: IPricingProps) => {
-  const priceAsNumber = Number(price);
+  const montlyPricing = Number(pricing[0]);
+  const annuallyPricing = Number(pricing[1]);
+  const annuallyPricingAsMonth = Math.round(annuallyPricing * 12);
 
   const currencyMap = {
     $: "en-US",
@@ -44,7 +44,8 @@ const Pricing = ({
   const formattedPrice = new Intl.NumberFormat(currencyMap[currency], {
     style: "currency",
     currency: currency === "$" ? "USD" : "EUR"
-  }).format(priceAsNumber);
+  }).format(billingCycle === "monthly" ? montlyPricing : annuallyPricing);
+
 
   return (
     <div
@@ -56,10 +57,15 @@ const Pricing = ({
           {formattedPrice}
         </span>
         <span className={cn("text-base", pricingVariants({ variant }), "ml-1")}>
-          / {billingCycle}
+          / month
         </span>
       </div>
-      {subText && <span className='mt-1 text-base text-neutral-600'>{subText}</span>}
+      <div>
+        <span className='mt-1 text-base text-neutral-600'>Billed {billingCycle}</span>
+        {billingCycle === "annually" && (
+          <span className='mt-1 text-base text-neutral-600'>{" "}({currency}{annuallyPricingAsMonth})</span>
+        )}
+      </div>
     </div>
   );
 };

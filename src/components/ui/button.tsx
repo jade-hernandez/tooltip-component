@@ -68,7 +68,7 @@ const buttonVariants = cva("flex items-center font-medium", {
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   textContent?: string;
   icon?: React.ReactElement;
   iconPosition?: "left" | "right";

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { CheckList } from "./check-list";
-import { Pricing } from "./pricing";
+import { Pricing, TBillingCycle } from "./pricing";
 
 type TVariant = "default" | "highlighted";
 type TButtonVariant =
@@ -12,10 +12,11 @@ type TButtonVariant =
   | "linkGray"
   | "destructive";
 
-interface IPriceCardProps {
+export interface IPriceCardProps {
   title: string;
   description: string;
-  price: string;
+  pricing: string[];
+  billingCycle: TBillingCycle;
   features: { content: string; className?: string }[];
   isFeatured?: boolean;
   headingText?: string;
@@ -26,7 +27,8 @@ interface IPriceCardProps {
 export const PriceCard = ({
   title,
   description,
-  price,
+  pricing,
+  billingCycle,
   features,
   isFeatured = false,
   headingText = "",
@@ -54,8 +56,8 @@ export const PriceCard = ({
           </div>
 
           <Pricing
-            price={price}
-            subText='Billed monthly'
+            pricing={pricing}
+            billingCycle={billingCycle}
             variant={variant}
           />
 
