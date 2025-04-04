@@ -72,7 +72,7 @@ export default function HelloWorld() {
             <div className='mb-4 flex items-center justify-between'>
               <span className='text-sm text-gray-700'>Cookies Consent</span>
               <ToggleSwitch
-                size='lg'
+                size='md'
                 checked={cookiesConsent3}
                 onCheckedChange={setCookiesConsent3}
               />
