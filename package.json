@@ -1,7 +1,7 @@
 {
-  "name": "starter",
+  "name": "tooltip-component",
   "version": "0.1.0",
-  "description": "A starter project for Next.js with Tailwind CSS",
+  "description": "A tooltip component built with React and Tailwind CSS.",
   "private": true,
   "author": "Jade Hernandez",
   "license": "ISC",
