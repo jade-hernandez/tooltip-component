@@ -4,7 +4,7 @@ import { ReactNode, forwardRef, useState } from "react";
 
 // Define variants for the tooltip container
 const tooltipVariants = cva(
-  "absolute z-10 px-3 py-2 rounded-lg text-sm whitespace-nowrap",
+  "absolute z-10 px-3 py-2 rounded-lg text-xs whitespace-nowrap shadow-[0_10px_15px_-0.3px_rgba(0,0,0,0.1),0_4px_6px_-0.4px_rgba(0,0,0,0.1)]",
   {
     variants: {
       position: {
@@ -26,14 +26,14 @@ const tooltipVariants = cva(
 
 // Define variants for the tooltip arrow
 const arrowVariants = cva(
-  "absolute border-4 border-transparent",
+  "absolute border-[3px] border-transparent",
   {
     variants: {
       position: {
-        top: "top-full left-1/2 -translate-x-1/2 border-t-neutral-950",
-        right: "right-full top-1/2 -translate-y-1/2 border-r-neutral-950",
-        bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-neutral-950",
-        left: "left-full top-1/2 -translate-y-1/2 border-l-neutral-950"
+        top: "top-[calc(100%-3px)] left-1/2 -translate-x-1/2 transform rotate-45 rounded-br-[0.75px]",
+        right: "top-1/2 left-[calc(-3px-0.5rem)] transform rotate-45 rounded-bl-[0.75px]",
+        bottom: "top-[-3px] left-1/2 -translate-x-1/2 transform rotate-45 rounded-tr-[0.75px]",
+        left: "top-1/2 left-[calc(100%-3px)] transform rotate-45 rounded-tl-[0.75px]"
       }
     },
     defaultVariants: {
