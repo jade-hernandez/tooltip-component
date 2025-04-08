@@ -1,9 +1,9 @@
-import HelloWorld from "@/components/tooltip-component";
+import TooltipExercise from "@/components/tooltip-excercise";
 
 export default function Home() {
   return (
     <main className='gfe-main'>
-      <HelloWorld />
+      <TooltipExercise />
     </main>
   );
 }

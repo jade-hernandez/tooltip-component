@@ -1,8 +1,8 @@
 "use client";
 
-import { Tooltip } from "./ui/tooltip";
+import { Tooltip } from "../ui/tooltip";
 
-export default function TooltipComponent() {
+export default function TooltipShowcase() {
   return (
     <div className="flex flex-col items-center justify-center gap-8 h-screen">
       {/* Basic tooltip (bottom position - default) */}
