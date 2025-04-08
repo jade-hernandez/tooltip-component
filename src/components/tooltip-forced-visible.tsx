@@ -4,7 +4,7 @@ import { ReactNode, forwardRef, useState } from "react";
 
 // Define variants for the tooltip container
 const tooltipVariants = cva(
-  "absolute z-10 px-3 py-2 rounded-lg text-xs whitespace-nowrap",
+  "absolute z-10 px-3 py-2 rounded-lg text-xs whitespace-nowrap shadow-[0_10px_15px_-0.3px_rgba(0,0,0,0.1),0_4px_6px_-0.4px_rgba(0,0,0,0.1)]",
   {
     variants: {
       position: {
