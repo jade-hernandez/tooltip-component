@@ -1,4 +1,6 @@
-# Starter project
+# Live site URL
+
+- [https://tooltip-component-orpin.vercel.app/](https://tooltip-component-orpin.vercel.app/)
 
 ## Step by step guide for creating a new project based on this one
 
